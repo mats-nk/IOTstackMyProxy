@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+
+  myproxy:
+    container_name: myproxy
+    image: myproxy
+    build: ./services/myproxy/.
+    ports:
+    - "80:80"
+    networks:
+      iotstack_nw:
+
+networks:
+  iotstack_nw: # Exposed by your host.
+    name: IOTstack_Net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.77.60.0/24
